@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20, 22]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm test
+      - name: Smoke test - pseudo
+        run: node bin/ngx-i18n-guardrails.mjs pseudo --in examples/en.json --out examples/pseudo-ci.json
+      - name: Smoke test - check (expect exit 1 due to seeded missing key)
+        run: node bin/ngx-i18n-guardrails.mjs check --locales "examples/{en,fr}.json" || true
+      - name: Smoke test - scan
+        run: node bin/ngx-i18n-guardrails.mjs scan --source "examples/templates/**/*.html"
