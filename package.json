@@ -1,0 +1,46 @@
+{
+  "name": "ngx-i18n-guardrails",
+  "version": "0.1.0",
+  "description": "CLI toolkit for ngx-translate projects: pseudo-localization, locale parity checking, and hardcoded string scanning.",
+  "type": "module",
+  "bin": {
+    "ngx-i18n-guardrails": "./bin/ngx-i18n-guardrails.mjs"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "pseudo:example": "node bin/ngx-i18n-guardrails.mjs pseudo --in examples/en.json --out examples/pseudo.json",
+    "check:example": "node bin/ngx-i18n-guardrails.mjs check --locales \"examples/*.json\"",
+    "scan:example": "node bin/ngx-i18n-guardrails.mjs scan --source \"examples/templates/**/*.html\""
+  },
+  "keywords": [
+    "angular",
+    "i18n",
+    "ngx-translate",
+    "pseudolocalization",
+    "localization",
+    "rtl",
+    "internationalization",
+    "translation",
+    "locale",
+    "parity"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "LICENSE",
+    "README.md"
+  ]
+}
